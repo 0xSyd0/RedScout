@@ -132,6 +132,7 @@ RedScout/
 ├── passive/               # Passive reconnaissance modules
 │   ├── dns_enum.py       # DNS enumeration
 │   ├── whois_enum.py     # WHOIS lookup
+│   ├── subdomain.txt
 │   └── subdomain_enum.py # Subdomain discovery
 │
 ├── active/                # Active reconnaissance modules
