@@ -107,9 +107,6 @@ aiodns
 ### Screenshot
 ![RedScout Screenshot](Captures/image.png)
 
-### Installation Demo Recording
-[Watch Demo Video](Captures/Installation.gif)
-
 ### Available Flags
 
 | Flag | Description |
