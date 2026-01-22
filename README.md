@@ -38,13 +38,13 @@ Developed by **ITSOLERA – Theta Team** | Offensive Security & Penetration Test
 - **Independent Modules** - Each reconnaissance task is a separate module
 - **Flexible Execution** - Run individual modules or full reconnaissance
 - **CLI-Driven** - Simple command-line interface with flags
-
+- **Configurable Verbosity Levels** – Control output detail using --verbosity or -v, -vv flag:
+  
 ###  Logging
 
 - **Centralized System** - All operations logged to `logs/redscout.log`
 - **Dual Output** - Console and file logging enabled
 - **Debug Support** - Detailed execution tracking
-- **Configurable Verbosity Levels** – Control output detail using --verbosity or -v, -vv flag:
 
 ---
 
@@ -59,11 +59,14 @@ Developed by **ITSOLERA – Theta Team** | Offensive Security & Penetration Test
 
 ```bash
 # Clone the repository
-git clone https://github.com/0xSyd0/redscout.git
-cd redscout
+git clone https://github.com/0xSyd0/RedScout.git
+cd Redscout
 
 # Install dependencies
 pip install -r requirements.txt
+
+# Make the file exucatable
+chmod +x RedScout
 ```
 
 ### Dependencies
@@ -72,34 +75,33 @@ pip install -r requirements.txt
 dnspython
 python-whois
 requests
-beautifulsoup4
-Wappalyzer
+aiodns
 ```
 
 ---
 
 ##  Usage
 
-### Full Reconnaissance Scan
+### Full Reconnaissance Scan With Very Verbosity
 
 ```bash
-python main.py -d example.com --full
+./Redscout -d example.com --full -vv
 ```
 
 ### Run Specific Modules
 
 ```bash
 # DNS and WHOIS only
-python main.py -d example.com --dns --whois
+./Redscout -d example.com --dns --whois
 
 # Subdomain enumeration
-python main.py -d example.com --subdomains
+./Redscout -d example.com --subdomains
 
 # Port scanning and banner grabbing
-python main.py -d example.com --ports --banner
+./Redscout -d example.com --ports --banner
 
 # Web technology detection
-python main.py -d example.com --tech
+./Redscout -d example.com --tech
 ```
 
 ### Available Flags
@@ -114,6 +116,7 @@ python main.py -d example.com --tech
 | `--ports` | Port scanning |
 | `--banner` | Banner grabbing |
 | `--tech` | Technology detection |
+| `-v, -vv` | Verbosity Mode |
 
 ---
 
@@ -123,6 +126,7 @@ python main.py -d example.com --tech
 RedScout/
 │
 ├── main.py                 # Main entry point
+├── subdomain.txt
 ├── requirements.txt        # Python dependencies
 ├── README.md              # This file
 │
@@ -133,7 +137,6 @@ RedScout/
 ├── passive/               # Passive reconnaissance modules
 │   ├── dns_enum.py       # DNS enumeration
 │   ├── whois_enum.py     # WHOIS lookup
-│   ├── subdomain.txt
 │   └── subdomain_enum.py # Subdomain discovery
 │
 ├── active/                # Active reconnaissance modules
