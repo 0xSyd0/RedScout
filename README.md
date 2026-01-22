@@ -108,7 +108,10 @@ aiodns
 ![RedScout Screenshot](Captures/image.png)
 
 ### Installation Demo Recording
-[Watch Demo](Captures/Installation.mp4)
+<video width="600" controls>
+  <source src="Captures/Installation.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 ### Available Flags
 
