@@ -44,6 +44,7 @@ Developed by **ITSOLERA – Theta Team** | Offensive Security & Penetration Test
 - **Centralized System** - All operations logged to `logs/redscout.log`
 - **Dual Output** - Console and file logging enabled
 - **Debug Support** - Detailed execution tracking
+- **Configurable Verbosity Levels** – Control output detail using --verbosity or -v, -vv flag:
 
 ---
 
