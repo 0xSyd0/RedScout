@@ -152,17 +152,12 @@ def safe_main():
     except KeyboardInterrupt:
         stop_event.set()
 
-    except Exception:
-        print(f"\n{RED}{BOLD}[!] Unexpected error occurred. Exiting safely...{RESET}")
-
     finally:
         stop_event.set()
 
         for t in threading.enumerate():
             if t is not threading.main_thread():
                 t.join(timeout=2)
-
-        print(f"{GREEN}{BOLD}[+] Cleanup completed. Goodbye.{RESET}")
         sys.exit(0)
 
 
