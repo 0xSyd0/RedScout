@@ -1,4 +1,5 @@
 import argparse
+import re
 
 def parse_args():
     parser = argparse.ArgumentParser(
@@ -15,5 +16,55 @@ def parse_args():
     parser.add_argument("--tech", action="store_true", help="Technology Detection")
 
     parser.add_argument("--full", action="store_true", help="Run Full Recon")
+    parser.add_argument("-v","--verbose",action="count",default=0,help="Increase verbosity level (-v, -vv)")
+
+    args = parser.parse_args()
+    validate = input_validation(args.domain)
+
+    if not validate:
+        print("Invalid URL\n")
+        exit(0)
 
     return parser.parse_args()
+
+def input_validation(value):
+
+    ipv4_pattern = r'^((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}' \
+                   r'(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)$'
+
+    domain_pattern = r'^(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$'
+
+    targets = re.split(r'[,\s]+', value.strip())
+
+    cleaned_targets = []
+
+    for target in targets:
+
+        target = target.strip().lower()
+
+        if not target:
+            continue
+
+        target = re.sub(r'^https?://', '', target)
+
+        target = target.split('/')[0]
+
+        parts = target.split('.')
+
+        if len(parts) > 2:
+            target = '.'.join(parts[-2:])
+
+        if re.fullmatch(ipv4_pattern, target):
+            cleaned_targets.append(target)
+            continue
+
+        if re.fullmatch(domain_pattern, target):
+            cleaned_targets.append(target)
+            continue
+
+        return False
+
+    return cleaned_targets
+
+
+            

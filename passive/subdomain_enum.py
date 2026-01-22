@@ -1,19 +1,64 @@
-import requests
+import random
+import socket
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
-def enumerate_subdomains(domain, limit=50):
-    subdomains = set()
+RED = "\033[31m"
+YELLOW_BOLD = "\033[1;33m"
+RESET = "\033[0m"
 
-    url = f"https://crt.sh/?q=%25.{domain}&output=json"
+MAX_THREADS = 100   
 
-    try:
-        response = requests.get(url, timeout=10)
-        if response.status_code == 200:
-            data = response.json()
-            for entry in data:
-                name = entry.get("name_value", "")
-                for sub in name.split("\n"):
-                    subdomains.add(sub.strip())
-    except Exception as e:
-        return [f"Error: {e}"]
+def enumerate_subdomains(domain, verbose):
+    raw_text = f"PERFORMING SUBDOMAIN ENUMERATION FOR {RESET}{domain.upper()}"
 
-    return list(subdomains)[:limit]
+    width = max(66, len(raw_text) + 2)
+
+    top = "╔" + "═" * width + "╗"
+    bottom = "╚" + "═" * width + "╝"
+
+    padding = (width - len(raw_text)) // 2
+
+    line = "║  " + " " * padding + f"{YELLOW_BOLD}{raw_text}{RESET}{RED}" + \
+           " " * (width - padding - len(raw_text)) + "  ║"
+
+    print(f"\n{RED}{top}")
+    print(line)
+    print(f"{bottom}{RESET}\n")
+    
+    result = []
+    with open("subdomain.txt", "r", encoding="utf-8", errors="ignore") as f:
+        words = [line.strip() for line in f if line.strip()]
+    sample_size = min(800, len(words))
+    random_words = random.sample(words, sample_size)
+
+    def check_subdomain(word):
+        subdomain = f"{word}.{domain}"
+        try:
+            ip = socket.gethostbyname(subdomain)
+            return subdomain, ip
+        except socket.gaierror:
+            return None
+        
+    with ThreadPoolExecutor(max_workers=MAX_THREADS) as executor:
+
+        futures = [executor.submit(check_subdomain, word) for word in random_words]
+
+        for future in as_completed(futures):
+            result_data = future.result()
+
+            if result_data:
+                subdomain, ip = result_data
+
+                if verbose == 0:
+                    print(f"{RESET}{subdomain}")
+                elif verbose == 1:
+                    print(f"{YELLOW_BOLD}{subdomain} -> {RESET}{ip}")
+                elif verbose >= 2:
+                    print(f"{RESET}{subdomain}{YELLOW_BOLD} resolved to {RESET}{ip}")
+
+                result.append({
+                    "subdomain": subdomain,
+                    "ip": ip
+                })
+
+    return result
