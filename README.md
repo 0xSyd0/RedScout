@@ -103,6 +103,12 @@ aiodns
 # Web technology detection
 ./Redscout -d example.com --tech
 ```
+##  Captures
+### Screenshot
+![RedScout Screenshot](Captures/image.png)
+
+### Installation Demo Recording
+[Watch Demo](Captures/Installation.mp4)
 
 ### Available Flags
 
