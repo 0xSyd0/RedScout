@@ -1,6 +1,4 @@
 dnspython
 requests
 python-whois
-python-Wappalyzer
-beautifulsoup4
-lxml
+aiodns
