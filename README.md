@@ -128,7 +128,7 @@ aiodns
 ```
 RedScout/
 │
-├── main.py                 # Main entry point
+├── RedScout                # Main entry point
 ├── subdomain.txt
 ├── requirements.txt        # Python dependencies
 ├── README.md              # This file
