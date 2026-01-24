@@ -131,6 +131,7 @@ RedScout/
 ├── RedScout                # Main entry point
 ├── subdomain.txt
 ├── requirements.txt        # Python dependencies
+├── commandsToConfigureTool.txt
 ├── README.md              # This file
 │
 ├── cli/                   # Command-line interface
