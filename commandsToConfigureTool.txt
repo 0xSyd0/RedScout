@@ -1,0 +1,36 @@
+===============================
+RedScout Tool Setup & Execution
+===============================
+
+1) Clone Repository
+-------------------
+git clone https://github.com/0xSyd0/RedScout.git
+
+
+2) Navigate Into Project Directory
+----------------------------------
+cd RedScout
+
+
+3) Install Required Dependencies
+--------------------------------
+pip install -r requirements.txt
+
+
+4) Make Tool Executable (Linux)
+-------------------------------
+chmod +x RedScout
+
+
+5) Full Scan With Maximum Verbosity
+-----------------------------------
+./RedScout -d example.com --full -vv
+
+
+Notes:
+------
+- Replace "example.com" with your target domain
+- Use "-v" for normal verbosity
+- Use "-vv" for detailed debugging output
+- Reports will be generated inside the "reports/" directory
+- Logs will be saved inside the "logs/" directory
