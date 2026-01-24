@@ -1,0 +1,63 @@
+RedScout Recon Report
+Target: example.com
+IP: 104.18.27.120
+Time: 20260124_091618
+
+[DNS]
+A: ['104.18.26.120', '104.18.27.120']
+CNAME: ['Not Found']
+MX: ['0 .']
+NS: ['hera.ns.cloudflare.com.', 'elliott.ns.cloudflare.com.']
+TXT: ['_k2n1y4vw3qtb4skdx9e7dxt97qrmmq9', 'v=spf1 -all']
+
+[WHOIS]
+domain_name: EXAMPLE.COM
+registrar: RESERVED-Internet Assigned Numbers Authority
+registrar_url: http://res-dom.iana.org
+reseller: None
+whois_server: whois.iana.org
+referral_url: None
+updated_date: 2026-01-16 18:26:50+00:00
+creation_date: 1995-08-14 04:00:00+00:00
+expiration_date: 2026-08-13 04:00:00+00:00
+name_servers: ['ELLIOTT.NS.CLOUDFLARE.COM', 'HERA.NS.CLOUDFLARE.COM']
+status: ['clientDeleteProhibited https://icann.org/epp#clientDeleteProhibited', 'clientTransferProhibited https://icann.org/epp#clientTransferProhibited', 'clientUpdateProhibited https://icann.org/epp#clientUpdateProhibited']
+emails: None
+dnssec: signedDelegation
+name: None
+org: None
+address: None
+city: None
+state: None
+registrant_postal_code: None
+country: None
+tech_name: None
+tech_org: None
+admin_name: None
+admin_org: None
+
+[SUBDOMAINS]
+- {'subdomain': 'www.example.com', 'ip': '104.18.26.120'}
+
+[PORTS]
+- 80
+- 443
+- 8080
+
+[BANNERS]
+80: HTTP/1.1 400 Bad Request
+Date: Sat, 24 Jan 2026 09:16:08 GMT
+Content-Length: 68
+Connection: close
+Cache-Control: private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+Referrer-Policy: same-origin
+Expires: Thu, 01 Jan 1970 00:00:01 GMT
+Proxy-Status: Cloudflare-Proxy;error=http_request_error
+CF-RAY: 9c2e6e27eabb4917-BOM
+443: 
+8080: 
+
+[TECHNOLOGIES]
+url: http://example.com
+technologies: ['cloudflare']
+
